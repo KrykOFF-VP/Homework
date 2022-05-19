@@ -271,7 +271,12 @@ namespace Lesson2
             Console.ReadKey();
             return;
         }
-
+        /// <summary>
+        /// Вычисление итоговой стоимости
+        /// </summary>
+        /// <param name="price">Параметр Цены</param>
+        /// <param name="amountnt">Параметр колличества</param>
+        /// <returns></returns>
         static int Calcprice(int price, int amountnt)
         {
             return amountnt * price;
