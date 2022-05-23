@@ -66,7 +66,7 @@ namespace Lesson3
         /// </summary>
         static void Task1()
         {
-            Console.WriteLine("Введите 1 значение размерности массива ");
+            Console.WriteLine("Введите 1 значение размерности массива ");                                       //вводим данные массива
             int x = int.Parse(Console.ReadLine());
             Console.WriteLine("Введите 2 значение размерности массива ");
             int y = int.Parse(Console.ReadLine());
@@ -93,7 +93,7 @@ namespace Lesson3
 
         static void Task2()
         {
-            string[,] phonebook = new string[5, 2]
+            string[,] phonebook = new string[5, 2]                                                // Создаем массив сданными
             {
                 { "Иванов", "89855854556"},
                 { "Петров", "89546548798"},
@@ -116,7 +116,7 @@ namespace Lesson3
                 Console.WriteLine("Введите порядковй номер абонента: ");
                 int number = int.Parse(Console.ReadLine());
 
-                switch (number)
+                switch (number)                                                                                   //создаем  выбор с показом элементов массива
                 {
                     case 0:
                         Console.WriteLine("Завершение рвботы приложения");
@@ -164,7 +164,7 @@ namespace Lesson3
         {
              Console.WriteLine("Напишите любое слово.");
              string word = Console.ReadLine();
-             Console.WriteLine(word.Reverse().ToArray());
+             Console.WriteLine(word.Reverse().ToArray());                                                                 
              Console.Write("Для выхода нажмите Enter\n");
              Console.ReadKey();
             
