@@ -90,7 +90,9 @@ namespace Lesson3
             Console.ReadKey();
 
         }
-
+        /// <summary>
+        /// Решение второго задания
+        /// </summary>
         static void Task2()
         {
             string[,] phonebook = new string[5, 2]                                                // Создаем массив сданными
