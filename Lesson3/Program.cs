@@ -39,9 +39,9 @@ namespace Lesson3
                         Task2();
                         break;
 
-                    //case 3:
-                    //Task3();
-                    //break;
+                    case 3:
+                        Task3();
+                        break;
 
                     //case 4:
                     //Task4();
@@ -157,7 +157,18 @@ namespace Lesson3
 
             }
         }
-
+        /// <summary>
+        /// Решение третьего задания
+        /// </summary>
+        static void Task3()
+        {
+             Console.WriteLine("Напишите любое слово.");
+             string word = Console.ReadLine();
+             Console.WriteLine(word.Reverse().ToArray());
+             Console.Write("Для выхода нажмите Enter\n");
+             Console.ReadKey();
+            
+        }
 
     }
 }
