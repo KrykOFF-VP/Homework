@@ -66,9 +66,41 @@ namespace Lesson4
         /// </summary>
         static void Task1()
         {
-         
+            Console.WriteLine("Введите колличество строк в списке фамилий");
+            int number =int.Parse(Console.ReadLine());
+            string firstName = "";
+            string lastName = "";
+            string patronymic = "";
+            string []str = new string[number];          
+
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                Console.WriteLine("Введите Фамилию");
+                firstName = (Console.ReadLine());
+                Console.WriteLine("Введите Имя");
+                lastName = (Console.ReadLine());
+                Console.WriteLine("Введите Отчество");
+                patronymic = (Console.ReadLine());
+                str[i] = GetFullName(firstName, lastName, patronymic);
+                Console.WriteLine(str[i]);
+            }
+            
+
+            
+            
+            Console.Write("Для выхода нажмите Enter\n");
+            Console.ReadKey();
 
         }
+        
+        static string GetFullName(string firstName, string lastName, string patronymic)
+          {
+            string fullName = firstName+ " "+ lastName+" " + patronymic+" ";
+
+            
+            return fullName;
+          }
         /// <summary>
         /// Решение второго задания
         /// </summary>
