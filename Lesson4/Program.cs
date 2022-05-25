@@ -61,20 +61,18 @@ namespace Lesson4
 
 
         }
-        /// <summary>
-        /// Решение первого задания
-        /// </summary>
+      /// <summary>
+      /// Решение первого задания
+      /// </summary>
         static void Task1()
         {
             Console.WriteLine("Введите колличество строк в списке фамилий");
             int number =int.Parse(Console.ReadLine());
-            string firstName = "";
+            string firstName = "";                                                                          ///объявление необходимых переменных и массива
             string lastName = "";
             string patronymic = "";
-            string []str = new string[number];          
-
-
-            for (int i = 0; i < str.Length; i++)
+            string []str = new string[number];   
+            for (int i = 0; i < str.Length; i++)                                                           /// цикл длинны переменной number
             {
                 Console.WriteLine("Введите Фамилию");
                 firstName = (Console.ReadLine());
@@ -85,19 +83,18 @@ namespace Lesson4
                 str[i] = GetFullName(firstName, lastName, patronymic);
                 Console.WriteLine(str[i]);
             }
-            
-
-            
-            
+                  
             Console.Write("Для выхода нажмите Enter\n");
             Console.ReadKey();
 
         }
+        /// <summary>
+        /// Метод для склейки переменных в нужном порядке
+        /// </summary>
         
         static string GetFullName(string firstName, string lastName, string patronymic)
           {
             string fullName = firstName+ " "+ lastName+" " + patronymic+" ";
-
             
             return fullName;
           }
