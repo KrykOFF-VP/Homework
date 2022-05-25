@@ -53,27 +53,24 @@ namespace Lesson4
                         break;
                 }
             }
-            Task1();
-            Task2();
-            Task3();
-            //Task4();
-
-
+                      
+           
 
         }
-      /// <summary>
-      /// Решение первого задания
-      /// </summary>
+        /// <summary>
+        /// Решение первого задания
+        /// </summary>
         static void Task1()
         {
             Console.WriteLine("Введите колличество строк в списке фамилий");
-            int number =int.Parse(Console.ReadLine());
+            int number = int.Parse(Console.ReadLine());
             string firstName = "";                                                                          ///объявление необходимых переменных и массива
             string lastName = "";
             string patronymic = "";
-            string []str = new string[number];   
-            for (int i = 0; i < str.Length; i++)                                                           /// цикл длинны переменной number
+            string[] str = new string[number];                                                             ///объявлем массив с циклом длинны number
+            for (int i = 0; i < str.Length; i++)
             {
+                Console.WriteLine("=================================");
                 Console.WriteLine("Введите Фамилию");
                 firstName = (Console.ReadLine());
                 Console.WriteLine("Введите Имя");
@@ -81,9 +78,11 @@ namespace Lesson4
                 Console.WriteLine("Введите Отчество");
                 patronymic = (Console.ReadLine());
                 str[i] = GetFullName(firstName, lastName, patronymic);
-                Console.WriteLine(str[i]);
+                Console.WriteLine("=================================");
+                Console.WriteLine($"{i + 1} {str[i]}");                                                    //Вывод строки с порядковым номером
+             
             }
-                  
+
             Console.Write("Для выхода нажмите Enter\n");
             Console.ReadKey();
 
@@ -91,31 +90,48 @@ namespace Lesson4
         /// <summary>
         /// Метод для склейки переменных в нужном порядке
         /// </summary>
-        
+
         static string GetFullName(string firstName, string lastName, string patronymic)
-          {
-            string fullName = firstName+ " "+ lastName+" " + patronymic+" ";
-            
+        {
+            string fullName = firstName + " " + lastName + " " + patronymic + " ";
+
             return fullName;
-          }
+        }
         /// <summary>
         /// Решение второго задания
         /// </summary>
         static void Task2()
         {
-       
-                
-
-
-
-            
+           
+            Console.WriteLine("Введите любые числа через пробел");
+            string numbs=(Console.ReadLine());
+            CalckString(numbs);
+            Console.Write("Для выхода нажмите Enter\n");
+            Console.ReadKey();
         }
+
+        static string[] separators = { " " };
+        
+        static void CalckString(string numbs)
+        {
+            string[]mass= numbs.Split(separators, StringSplitOptions.RemoveEmptyEntries);         //Убираем пробелы
+            int result = 0;
+            int[]conv= { };
+            for (int i=0; i<mass.Length; i++)
+            {
+             result+=Convert.ToInt32(mass[i]);                                                   //конвертируем массив в числовое значение и складываем получившийся результат
+             
+            }
+            Console.WriteLine($"Cумма чисел равна {result}");
+        }
+        
+
         /// <summary>
         /// Решение третьего задания
         /// </summary>
         static void Task3()
         {
-      
+         
         }
 
     }
