@@ -53,8 +53,8 @@ namespace Lesson4
                         break;
                 }
             }
-                      
-           
+
+
 
         }
         /// <summary>
@@ -80,7 +80,7 @@ namespace Lesson4
                 str[i] = GetFullName(firstName, lastName, patronymic);
                 Console.WriteLine("=================================");
                 Console.WriteLine($"{i + 1} {str[i]}");                                                    //Вывод строки с порядковым номером
-             
+
             }
 
             Console.Write("Для выхода нажмите Enter\n");
@@ -102,38 +102,50 @@ namespace Lesson4
         /// </summary>
         static void Task2()
         {
-           
+
             Console.WriteLine("Введите любые числа через пробел");
-            string numbs=(Console.ReadLine());
+            string numbs = (Console.ReadLine());
             CalckString(numbs);
             Console.Write("Для выхода нажмите Enter\n");
             Console.ReadKey();
         }
 
         static string[] separators = { " " };
-        
+
         static void CalckString(string numbs)
         {
-            string[]mass= numbs.Split(separators, StringSplitOptions.RemoveEmptyEntries);         //Убираем пробелы
+            string[] mass = numbs.Split(separators, StringSplitOptions.RemoveEmptyEntries);         //Убираем пробелы
             int result = 0;
-            int[]conv= { };
-            for (int i=0; i<mass.Length; i++)
+            int[] conv = { };
+            for (int i = 0; i < mass.Length; i++)
             {
-             result+=Convert.ToInt32(mass[i]);                                                   //конвертируем массив в числовое значение и складываем получившийся результат
-             
+                result += Convert.ToInt32(mass[i]);                                                   //конвертируем массив в числовое значение и складываем получившийся результат
+
             }
             Console.WriteLine($"Cумма чисел равна {result}");
         }
-        
+
 
         /// <summary>
         /// Решение третьего задания
         /// </summary>
-        static void Task3()
+
+        enum Seasons: int
         {
-         
+            
+            Winter =1,            
+            Spring ,
+            Summer ,
+            Autumn 
+        
         }
 
+        static void Task3()
+        {
+            Seasons emp = Seasons.Winter;
+            //AskForBonusSeasons(emp);
+            Console.ReadLine();
+       }
     }
 }
         
