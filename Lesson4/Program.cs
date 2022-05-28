@@ -130,9 +130,9 @@ namespace Lesson4
         /// Решение третьего задания
         /// </summary>
 
-        enum Seasons: int
+        enum Seasons 
         {
-            
+
             Winter =1,            
             Spring ,
             Summer ,
@@ -140,13 +140,87 @@ namespace Lesson4
         
         }
 
+       
+       
         static void Task3()
         {
-            Seasons emp = Seasons.Winter;
-            //AskForBonusSeasons(emp);
-            Console.ReadLine();
-       }
+
+         Askforseasons(Nowseason());        
+            object Askforseasons(object e)
+            {
+                if (e is (Seasons)1)
+                {
+                    string a = "Зима";
+                    Console.WriteLine($"Время года: {a}");
+                }
+                else if (e is (Seasons)2)
+                {
+                    string a = "Весна";
+                    Console.WriteLine($"Время года {a}");
+                }
+                else if (e is (Seasons)3)
+                {
+                    string a = "Лето";
+                    Console.WriteLine($"Время года {a}");
+                }
+
+                else if (e is (Seasons)4)
+                {
+                    string a = "Осень";
+                    Console.WriteLine($"Время года {a}");
+                }
+                return 0;
+            }
+            object Nowseason()
+            {
+                Console.Write("Укажите порядковый номер месяца: ");
+                int monthNo = int.Parse(Console.ReadLine());
+
+                if (monthNo <= 0 || monthNo > 12)
+                {
+                    Console.WriteLine("Вы ввели неправильный месяц");
+                    Console.WriteLine("Завершение работы...");
+                    return 0;
+                }
+                else if (monthNo == 12 || monthNo == 1 || monthNo == 2)
+                {
+
+                    Seasons x = (Seasons)1;
+                    object season = x;
+                    return season;
+                }
+
+
+                else if (monthNo == 3 || monthNo == 4 || monthNo == 5)
+                {
+                    Seasons x = (Seasons)2;
+                    object season = x;
+                    return season;
+                }
+
+                else if (monthNo == 6 || monthNo == 7 || monthNo == 8)
+                {
+                    Seasons x = (Seasons)3;
+                    object season = x;
+                    return season;
+                }
+                else
+                {
+                    Seasons x = (Seasons)4;
+                    object season = x;
+                    return season;
+                }
+
+            }
+            Console.Write("Для выхода нажмите Enter\n");
+            Console.ReadKey();
+
+
+
+        }
+
     }
+    
 }
         
     
