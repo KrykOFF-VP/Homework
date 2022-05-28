@@ -146,7 +146,7 @@ namespace Lesson4
         {
 
          Askforseasons(Nowseason());        
-            object Askforseasons(object e)
+            object Askforseasons(object e)                                                                         // Задаем значение при получени значения из enum
             {
                 if (e is (Seasons)1)
                 {
@@ -171,9 +171,9 @@ namespace Lesson4
                 }
                 return 0;
             }
-            object Nowseason()
+            object Nowseason()                                                                                       // Ввод значений и создание распределения по обеъектам enum
             {
-                Console.Write("Укажите порядковый номер месяца: ");
+                Console.Write("Укажите порядковый номер месяца: ");                                               
                 int monthNo = int.Parse(Console.ReadLine());
 
                 if (monthNo <= 0 || monthNo > 12)
