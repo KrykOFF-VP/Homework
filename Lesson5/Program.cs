@@ -20,8 +20,7 @@ namespace Lesson5
                 Console.WriteLine("=================================");
                 Console.WriteLine("1 -> Задание 1");
                 Console.WriteLine("2 -> Задание 2");
-                Console.WriteLine("3 -> Задание 3");
-                Console.WriteLine("4 -> Задание 4");
+                Console.WriteLine("3 -> Задание 3");               
                 Console.WriteLine("0 -> Завершение работы приложения");
                 Console.WriteLine("=================================");
 
@@ -98,18 +97,16 @@ namespace Lesson5
             Console.WriteLine("=========================================");
             Console.WriteLine("Введите название файла");
             string filename = (Console.ReadLine() + ".bin");
-            Console.WriteLine("Введите с клавиатуры произвольный набор чисел (0...255) через пробел");
-            string numbs = Console.ReadLine();
-            string[] split=numbs.Split(' ');
-            
-            for (int i = 0; i < split.Length; i++)
+            Console.WriteLine("Введите с клавиатуры произвольный набор чисел (0...255) через запятую");
+            var numbs = Console.ReadLine();
+            string[] split=numbs.Split(',');
+            byte[]x=new byte[split.Length];
+            for (int i = 0; i < x.Length; i++)
             {
-                byte x = Convert.ToByte(split[i]);
-                
-                
-               File.WriteAllBytes(filename, x);                                                 // записываем в файл строку
-               
+                x[i] = Convert.ToByte(split[i]);               
+                                                                          
             }
+            File.WriteAllBytes(filename, x);
             Console.Write("Для выхода нажмите Enter\n");
             Console.ReadKey();
 
