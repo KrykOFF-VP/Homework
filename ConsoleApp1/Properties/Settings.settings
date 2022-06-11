@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ConsoleApp1.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ApplicationName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Homework</Value>
+    </Setting>
+    <Setting Name="Greeting" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Здравствуйте</Value>
+    </Setting>
+    <Setting Name="Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Виталий</Value>
+    </Setting>
+    <Setting Name="Age" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Activity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Техподдержка</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

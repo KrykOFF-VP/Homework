@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Homework.MyUtils
 {
-    public class OutputHelpers
+    public static class OutputHelpers
     {
-        public void PrintInfo(int homeworkNumber, string myname)
+        public static void PrintInfo(int homeworkNumber, string myname)
         {
-            Console.WriteLine($"Доашняя работа. Урок{homeworkNumber}");
+            Console.WriteLine($"Домашняя работа. Урок{homeworkNumber}");
             Console.WriteLine($"Студент: {myname}");
-            Console.WriteLine("==========================================");
+            Console.WriteLine("==========================================\n");
         }
     }
 }
