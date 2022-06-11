@@ -12,7 +12,7 @@ namespace Homework.MyUtils
         {
             Console.WriteLine($"Доашняя работа. Урок{homeworkNumber}");
             Console.WriteLine($"Студент: {myname}");
-            Console.WriteLine("==========================================")
+            Console.WriteLine("==========================================");
         }
     }
 }
