@@ -129,8 +129,11 @@ namespace FileManager
                                 }
                                 catch (Exception ex)
                                 {
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    System.Threading.Thread.Sleep(100);
+                                    Console.SetCursorPosition(2, 19);
                                     Console.WriteLine($"произошло исключение.\n{ex.Message}");
-                                    
+
                                 }
 
                             }
@@ -147,6 +150,9 @@ namespace FileManager
                                 }
                                 catch (Exception ex)
                                 {
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    System.Threading.Thread.Sleep(100);
+                                    Console.SetCursorPosition(2, 19);
                                     Console.WriteLine($"произошло исключение.\n{ex.Message}");
 
                                 }
@@ -165,28 +171,76 @@ namespace FileManager
                                 }
                                 catch (Exception ex)
                                 {
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    System.Threading.Thread.Sleep(100);
+                                    Console.SetCursorPosition(2, 19);
                                     Console.WriteLine($"произошло исключение.\n{ex.Message}");
 
                                 }
 
                             }
-                         else if (Directory.Exists(commandParams[1]))
+                            else if (Directory.Exists(commandParams[1]))
                             {
-                                
-                                    try                                                                                                                 // поиск исключений
+
+                                try                                                                                                                 // поиск исключений
                                 {
                                     Console.WriteLine($"Удаление  {commandParams[1]}");
                                     DelDir(commandParams[1]);
+                                    DrawWindow(0, 0, WINDOW_WIDTH, 18);
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    UpdateConsole();
                                 }
                                 catch (Exception ex)
                                 {
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    System.Threading.Thread.Sleep(100);
+                                    Console.SetCursorPosition(2, 19);
                                     Console.WriteLine($"произошло исключение.\n{ex.Message}");
                                 }
 
                             }
-                                break;
-                        
-                }
+                        break;
+                    case "info":
+                        if (commandParams.Length > 1)
+                            if (File.Exists(commandParams[1]))
+                            {
+                                try                                                                                                                 // поиск исключений
+                                {
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    System.Threading.Thread.Sleep(100);
+                                    InfoFile(new FileInfo(commandParams[1]));
+                                }
+                                catch (Exception ex)
+                                {
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    System.Threading.Thread.Sleep(100);
+                                    Console.SetCursorPosition(2, 19);
+                                    Console.WriteLine($"произошло исключение.\n{ex.Message}");
+
+                                }
+
+                            }
+                            else if (Directory.Exists(commandParams[1]))
+                            {
+                                try                                                                                                                 // поиск исключений
+                                {
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    System.Threading.Thread.Sleep(100);
+                                    DirInfo(new DirectoryInfo(commandParams[1]));
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    System.Threading.Thread.Sleep(100);
+                                    Console.SetCursorPosition(2, 19);
+                                    Console.WriteLine($"произошло исключение.\n{ex.Message}");
+
+                                }
+                                
+                            }
+                        break;
+                }    
 
             }
 
@@ -393,12 +447,13 @@ namespace FileManager
         /// </summary>
         /// <param name="delDirectory">Удаляемая директория</param>
         public static void DelDir(string delDirectory)
-        {  
+        {
             DirectoryInfo dirdel = new DirectoryInfo(delDirectory);
             DirectoryInfo[] deleted = dirdel.GetDirectories();
 
             foreach (FileInfo file in dirdel.GetFiles())
             {
+                Console.WriteLine(@"Удаление {0}\{1}", dirdel.FullName, file.Name);
                 string targetFilePath = Path.Combine(delDirectory, file.Name);
                 file.Delete();
             }
@@ -414,7 +469,39 @@ namespace FileManager
 
         }
 
+       
+        
+        static  void InfoFile( FileInfo file)
+        {
+            Console.SetCursorPosition(2, 19);
+            Console.WriteLine($"{file.Attributes}- Название");
+            Console.SetCursorPosition(2, 20);
+            Console.WriteLine($"{file.FullName}- Путь");
+            Console.SetCursorPosition(2, 21);
+            Console.WriteLine($"{file.Extension}- Расширение");            
+            Console.SetCursorPosition(2, 22);
+            Console.WriteLine($"{file.LastAccessTime}- Время последнего изменения");
+            Console.SetCursorPosition(2, 23);
+            Console.WriteLine($"{file.CreationTime}- Время создания");            
+            Console.SetCursorPosition(2, 24);
+            Console.WriteLine($"Размер {file.Length} Байт"); 
 
+        }
+
+        static void DirInfo(DirectoryInfo dir)
+        {
+    
+            Console.SetCursorPosition(2, 20);
+            Console.WriteLine($"{dir.FullName}- Путь");
+            Console.SetCursorPosition(2, 21);
+            Console.WriteLine($"{dir.LastWriteTime}- Время последнего чтения");
+            Console.SetCursorPosition(2, 22);
+            Console.WriteLine($"{dir.LastAccessTime}- Время последнего изменения");
+            Console.SetCursorPosition(2, 23);
+            Console.WriteLine($"{dir.CreationTime}- Время создания");
+           
+
+        }
 
     }
 }
