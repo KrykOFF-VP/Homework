@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace FileManager
 {
@@ -114,48 +114,78 @@ namespace FileManager
                                 UpdateConsole();
                             }
                         break;
-                    case "cp dir":
-                        if (commandParams.Length > 1)
-                            if (Directory.Exists(commandParams[1]))
+                    case "cp":
+                        if (commandParams.Length > 2)
+                        {
+
+                            if (File.Exists(commandParams[1]))
                             {
-                            
-                                Copy(commandParams[1], commandParams[2]);
-                                DrawTree (new DirectoryInfo(commandParams[2]),1);
-                                DrawWindow(0, 18, WINDOW_WIDTH, 8);
-                                UpdateConsole();
-                            }
-                        break;
-                      
-                    case "cp file":
-                        if (commandParams.Length > 1)
-                            if (Directory.Exists(commandParams[1]))
-                            {
-                                if (Directory.Exists(commandParams[2]) == false)
+                                try                                                                                                                 // поиск исключений
                                 {
-                                    Directory.CreateDirectory(commandParams[2]);
-                                    FileInfo fileInf = new FileInfo(commandParams[1]);
-                                    if (fileInf.Exists)
-                                    {
-                                        fileInf.MoveTo(commandParams[2]);
-                                        
-                                    }
+                                    Console.WriteLine(@"Копирование {0}\{1}", commandParams[1], commandParams[2]);
+                                    File.Create(commandParams[2]).Dispose();
+                                    File.Copy(commandParams[1], commandParams[2], true);
+
                                 }
-                                else if (Directory.Exists(commandParams[2]) == true)
+                                catch (Exception ex)
                                 {
-
-                                    FileInfo fileInf = new FileInfo(commandParams[1]);
-                                    if (fileInf.Exists)
-                                    {
-                                        fileInf.MoveTo(commandParams[2]);
-
-                                    }
+                                    Console.WriteLine($"произошло исключение.\n{ex.Message}");
+                                    
                                 }
 
-                                DrawWindow(0, 18, WINDOW_WIDTH, 8);
-                                UpdateConsole();
                             }
-                        break;
 
+                            else if (Directory.Exists(commandParams[1]))
+                            {
+                                try                                                                                                                 // поиск исключений
+                                {
+
+                                    CopyDir(commandParams[1], commandParams[2]);
+                                    DrawWindow(0, 0, WINDOW_WIDTH, 18);
+                                    DrawWindow(0, 18, WINDOW_WIDTH, 8);
+                                    UpdateConsole();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"произошло исключение.\n{ex.Message}");
+
+                                }
+                            }
+
+                        }
+                        break;
+                    case "rm":
+                        if (commandParams.Length > 1)
+                            if (File.Exists(commandParams[1]))
+                            {
+                                try                                                                                                                 // поиск исключений
+                                {
+                                    Console.WriteLine($"Удаление  {commandParams[1]}");
+                                    File.Delete(commandParams[1]);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"произошло исключение.\n{ex.Message}");
+
+                                }
+
+                            }
+                         else if (Directory.Exists(commandParams[1]))
+                            {
+                                
+                                    try                                                                                                                 // поиск исключений
+                                {
+                                    Console.WriteLine($"Удаление  {commandParams[1]}");
+                                    DelDir(commandParams[1]);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"произошло исключение.\n{ex.Message}");
+                                }
+
+                            }
+                                break;
+                        
                 }
 
             }
@@ -308,53 +338,81 @@ namespace FileManager
 
 
 
-        // Метод копирования: задаем две директории откуда копировать и куда копировать
-        public static void Copy(string sourceDirectory, string targetDirectory)
+        /// <summary>
+        /// Скопировать дирректорию
+        /// </summary>
+        /// <param name="sourceDirectory">Начальная Дерриктория</param>
+        /// <param name="targetDirectory">Целевая дирректория</param>
+        public static void CopyDir(string sourceDirectory, string targetDirectory)
         {
             DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
             DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
-            // Вызываем основной метод копирования
             CopyAll(diSource, diTarget);
         }
-
+        /// <summary>
+        /// Метод копирования
+        /// </summary>
+        /// <param name="source">Изначальная дирректория </param>
+        /// <param name="target">Целевая дирректория</param>
         public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
-            // Если директория для копирования файлов не существует, то создаем ее
+            // Создание дирректории ,если  она отсутсвует
             if (Directory.Exists(target.FullName) == false)
             {
                 Directory.CreateDirectory(target.FullName);
             }
 
             // Копируем все файлы в новую директорию
-            foreach (FileInfo fi in source.GetFiles())
+            foreach (FileInfo files in source.GetFiles())
             {
-                // Выводим информацию о копировании в консоль
-                
-            Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);               
-               
-            fi.CopyTo(Path.Combine(target.ToString(), fi.Name), true);
 
-                
+                Console.WriteLine(@"Копирование {0}\{1}", target.FullName, files.Name);
+
+                files.CopyTo(Path.Combine(target.ToString(), files.Name), true);
+
+
             }
 
-            // Копируем рекурсивно все поддиректории
+
             foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
             {
-                // Создаем новую поддиректорию в директории
+
                 DirectoryInfo nextTargetSubDir =
                   target.CreateSubdirectory(diSourceSubDir.Name);
-                // Опять вызываем функцию копирования
-                // Рекурсия
+
+
                 CopyAll(diSourceSubDir, nextTargetSubDir);
             }
-            
-           
+
+
         }
 
-       
+
+        /// <summary>
+        /// Удалить дирректорию
+        /// </summary>
+        /// <param name="delDirectory">Удаляемая директория</param>
+        public static void DelDir(string delDirectory)
+        {  
+            DirectoryInfo dirdel = new DirectoryInfo(delDirectory);
+            DirectoryInfo[] deleted = dirdel.GetDirectories();
+
+            foreach (FileInfo file in dirdel.GetFiles())
+            {
+                string targetFilePath = Path.Combine(delDirectory, file.Name);
+                file.Delete();
+            }
 
 
 
+            foreach (DirectoryInfo subDir in deleted)
+            {
+
+                DelDir(subDir.FullName);
+            }
+            Directory.Delete(delDirectory);
+
+        }
 
 
 
